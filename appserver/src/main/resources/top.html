@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome to Oracle Code Tokyo 2019</title>
+</head>
+<script>
+  // https://qiita.com/kon_yu/items/d176eaef22d3892bc49b
+  // documentと毎回書くのがだるいので$に置き換え
+  var $ = document;
+  var $form = $.querySelector('form');// jQueryの $("form")相当
+
+  //jQueryの$(function() { 相当(ただし厳密には違う)
+  $.addEventListener('DOMContentLoaded', function () {
+    //画像ファイルプレビュー表示
+    //  jQueryの $('input[type="file"]')相当
+    // addEventListenerは on("change", function(e){}) 相当
+    $.querySelector('input[type="file"]').addEventListener('change', function (e) {
+      var file = e.target.files[0],
+          reader = new FileReader(),
+          $preview = $.querySelector(".preview"), // jQueryの $(".preview")相当
+          t = this;
+
+      // 画像ファイル以外の場合は何もしない
+      if (file.type.indexOf("image") < 0) {
+        return false;
+      }
+
+      reader.onload = (function (file) {
+        return function (e) {
+          //jQueryの$preview.empty(); 相当
+          while ($preview.firstChild) {
+            $preview.removeChild($preview.firstChild);
+          }
+
+          // imgタグを作成
+          var img = document.createElement('img');
+          img.setAttribute('src', e.target.result);
+          img.setAttribute('width', '240px');
+          img.setAttribute('title', file.name);
+          // imgタグを$previeの中に追加
+          $preview.appendChild(img);
+        };
+      })(file);
+
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
+<style>
+  @media screen and (max-width: 480px) {
+    .sample-images img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1450px) {
+    .sample-images {
+      width: 1450px;
+      margin: auto;
+    }
+  }
+
+  @media screen and (max-width: 1024px) {
+    .header-image img {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .header-image img {
+      width: 1024px;
+    }
+  }
+</style>
+<body>
+<div style="text-align:center;">
+
+  <div style="width: 100%">
+    <div class="header-image">
+      <img src="/resource/header.jpg" />
+    </div>
+  </div>
+
+  <h1>Apply Effect backed by Vector API/{{executorClass}}</h1>
+  <hr />
+  <h2>From your favorite image</h2>
+
+  <form action="/image" method="post" enctype="multipart/form-data">
+    <p>
+      <input type="file" name="imagefile" accept="image/png,image/jpeg" required>
+    </p>
+    <p>
+      <input type="submit" value="Apply Effect">
+    </p>
+    <div class="preview"></div>
+  </form>
+  <hr />
+  <h2>
+    From sample image(by @skrb)
+  </h2>
+
+  <div class="sample-images">
+    <a href="/image/image0.jpg"><img src="/resource/image0.jpg" width="480px" /></a>
+    <a href="/image/image1.jpg"><img src="/resource/image1.jpg" width="480px" /></a>
+    <a href="/image/image2.jpg"><img src="/resource/image2.jpg" width="480px" /></a>
+    <a href="/image/image3.jpg"><img src="/resource/image3.jpg" width="480px" /></a>
+    <a href="/image/image4.jpg"><img src="/resource/image4.jpg" width="480px" /></a>
+    <a href="/image/image5.jpg"><img src="/resource/image5.jpg" width="480px" /></a>
+    <a href="/image/image6.jpg"><img src="/resource/image6.jpg" width="480px" /></a>
+    <a href="/image/image7.jpg"><img src="/resource/image7.jpg" width="480px" /></a>
+    <a href="/image/image8.jpg"><img src="/resource/image8.jpg" width="480px" /></a>
+    <a href="/image/image9.jpg"><img src="/resource/image9.jpg" width="480px" /></a>
+    <a href="/image/image10.jpg"><img src="/resource/image10.jpg" width="480px" /></a>
+    <a href="/image/image11.jpg"><img src="/resource/image11.jpg" width="480px" /></a>
+    <a href="/image/image12.jpg"><img src="/resource/image12.jpg" width="480px" /></a>
+    <a href="/image/image13.jpg"><img src="/resource/image13.jpg" width="480px" /></a>
+    <a href="/image/image14.jpg"><img src="/resource/image14.jpg" width="480px" /></a>
+    <a href="/image/image15.jpg"><img src="/resource/image15.jpg" width="480px" /></a>
+    <a href="/image/image16.jpg"><img src="/resource/image16.jpg" width="480px" /></a>
+    <a href="/image/image17.jpg"><img src="/resource/image17.jpg" width="480px" /></a>
+    <a href="/image/image18.jpg"><img src="/resource/image18.jpg" width="480px" /></a>
+    <a href="/image/image19.jpg"><img src="/resource/image19.jpg" width="480px" /></a>
+    <a href="/image/image20.jpg"><img src="/resource/image20.jpg" width="480px" /></a>
+    <a href="/image/image21.jpg"><img src="/resource/image21.jpg" width="480px" /></a>
+    <a href="/image/image22.jpg"><img src="/resource/image22.jpg" width="480px" /></a>
+    <a href="/image/image23.jpg"><img src="/resource/image23.jpg" width="480px" /></a>
+  </div>
+
+  <hr />
+  debug<br />
+
+  <a href="/sleep">sleep</a><br />
+  <a href="/remote/sleep">sleep remote</a><br />
+
+</div>
+</body>
+</html>
