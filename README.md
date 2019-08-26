@@ -40,3 +40,25 @@ $ PROM_PATH=/path/to/prometheus ./run_prometheus.sh
 You can get the metrics on `localhost:9090`.
 
 appserver's metrics start from `app_`.
+
+## Tsung
+Tsung is a benchmark tool.
+http://tsung.erlang-projects.org/
+
+There're some configs for tsung in tsung.
+
+You can run it:
+```
+./run_tsung.sh tsung/fiber/remote/sleep
+```
+
+The log will be in `tsung/log`
+
+You can visualize the log by `tsung_stats.pl`
+
+For Linux,
+```
+cd tsung/log/<logdir>
+/usr/lib/x86_64-linux-gnu/tsung/bin/tsung_stats.pl
+xdg-open graph.html
+```
