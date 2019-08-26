@@ -53,7 +53,7 @@ You can run it:
 ./run_tsung.sh tsung/thread/remote/sleep
 ```
 
-The log will be in `tsung/log`
+The log will be in `/tsung/log`
 
 You can visualize the log by `tsung_stats.pl`
 
