@@ -8,11 +8,12 @@ You need to have Project Loom's ea JDK.
 $ JAVA_HOME=/path/to/loom/jdk ./run_appserver.sh fiber
 $ JAVA_HOME=/path/to/loom/jdk ./run_appserver.sh thread 400
 ```
-Above is the script to run appserver with fiber as request handler thread.
-Below is the script to run appserver with thread as request handler thread.
+Former is the script to run appserver with fiber as request handler thread.
+Latter is the script to run appserver with thread as request handler thread.
 2nd arg for thread version(in case of above: 400) is num of request handler threads.
 
 We share most code of appserver in both fiber version and thread version.
+The only difference is executor for request handling.
 Thus all RPC is sync and request thread will be blocked at RPC(like image effect and `/remote/sleep`) in thread version.
 Async RPC for thread version is TODO.
 
