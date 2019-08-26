@@ -45,11 +45,12 @@ appserver's metrics start from `app_`.
 Tsung is a benchmark tool.
 http://tsung.erlang-projects.org/
 
-There're some configs for tsung in tsung.
+There're some configs for tsung in `/tsung`
 
 You can run it:
 ```
 ./run_tsung.sh tsung/fiber/remote/sleep
+./run_tsung.sh tsung/thread/remote/sleep
 ```
 
 The log will be in `tsung/log`
